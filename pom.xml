@@ -62,6 +62,46 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-test</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.chrisdavenport</groupId>
+			<artifactId>fiberlocal_sjs1_3</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.chrisdavenport</groupId>
+			<artifactId>fiberlocal_3</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.chrisdavenport</groupId>
+			<artifactId>fiberlocal_sjs1_3</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.chrisdavenport</groupId>
+			<artifactId>fiberlocal_sjs1_3</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.chrisdavenport</groupId>
+			<artifactId>fiberlocal_sjs1_2.13</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.chrisdavenport</groupId>
+			<artifactId>fiberlocal_3</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.chrisdavenport</groupId>
+			<artifactId>fiberlocal_3</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.chrisdavenport</groupId>
+			<artifactId>fiberlocal_3</artifactId>
+			<version>0.1.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

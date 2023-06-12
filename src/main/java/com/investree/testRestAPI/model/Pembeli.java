@@ -4,10 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
-@Entity
-@Table(name = "pembeli")
+import java.util.List;
+
+@Setter @Getter @Entity @Table(name = "pembeli")
 public class Pembeli {
     @Id @Column(name = "id") @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,4 +22,10 @@ public class Pembeli {
 
     @Column(name = "alamat", columnDefinition = "TEXT")
     private Long alamat;
+
+    @OneToOne(mappedBy = "pembeli")
+    private PembeliDetail pembeliDetail;
+
+    @OneToMany(mappedBy = "pembeli")
+    List<Transaksi> transaksi;
 }
