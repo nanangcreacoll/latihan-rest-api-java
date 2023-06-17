@@ -7,12 +7,12 @@ import com.investree.testRestAPI.repository.BarangDetailRepo;
 import com.investree.testRestAPI.repository.BarangRepo;
 import com.investree.testRestAPI.repository.SupplierRepo;
 import com.investree.testRestAPI.view.BarangService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,8 +74,71 @@ public class BarangImpl implements BarangService {
             Supplier supp = repoSupp.getbyID(idsupplier);
             barang.setSupplier(supp);
             BarangDetail detailbarang = repoDetailBarang.save(barang.getDetail());
-        } catch () {
+            Barang obj = repo.save(barang);
 
+            detailbarang.setDetailBarang(obj);
+            repoDetailBarang.save(detailbarang);
+            map.put("data", obj);
+            map.put("statusCode", "200");
+            map.put("statusMessage", "Sukses");
+            return map;
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("statusCode", "500");
+            map.put("statusMessage", e);
+            return map;
+        }
+    }
+
+    @Override
+    public Map update(Barang barang, Long idsupplier) {
+        Map map = new HashMap();
+        try {
+            Supplier supp = repoSupp.getbyID(idsupplier);
+            Barang obj = repo.getByID(barang.getId());
+            if(obj == null) {
+                map.put("statusCode", "404");
+                map.put("statusMessage", "Data tidak ditemukan");
+                return map;
+            }
+
+            obj.setNama(barang.getNama());
+            obj.setHarga(barang.getHarga());
+            obj.setSatuan(barang.getSatuan());
+            obj.setStok(barang.getStok());
+            obj.setSupplier(supp);
+
+            map.put("data", obj);
+            map.put("statusCode", "200");
+            map.put("statusMessage", "Update Sukses");
+            return map;
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("statusCode", "500");
+            map.put("statusMessage", e);
+            return map;
+        }
+    }
+
+    @Override
+    public Map delete(Long idbarang) {
+        Map map = new HashMap();
+        try {
+            Barang obj = repo.getByID(idbarang);
+            if(obj == null) {
+                map.put("statusCode", "404");
+                map.put("statusMessage", "data id tidak ditemukan");
+                return map;
+            }
+            repo.deleteById(obj.getId());
+            map.put("statusCode", "200");
+            map.put("statusMessage", "Delete Sukses");
+            return map;
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("statusCode", "500");
+            map.put("statusMessage", e);
+            return map;
         }
     }
 

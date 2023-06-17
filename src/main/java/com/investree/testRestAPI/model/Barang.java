@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data @Entity @Table(name = "barang") @Where(clause = "deleted_date is null")
 public class Barang extends AbstractDate implements Serializable {
-    @Id @Column @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @Column(name="id") @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "nama", nullable = false, length = 45)
@@ -29,5 +29,8 @@ public class Barang extends AbstractDate implements Serializable {
     private Supplier supplier;
 
     @OneToMany(mappedBy = "barang")
-    List<Transaksi> transaksi;
+    private List<Transaksi> transaksi;
+
+    @OneToOne(mappedBy = "detailBarang")
+    private BarangDetail detail;
 }
